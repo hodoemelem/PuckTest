@@ -76,8 +76,8 @@
       gattCharacteristic = characteristic
       gattCharacteristic.addEventListener('characteristicvaluechanged',
           handleChangedValue)
-     // document.querySelector('#start').disabled = false
-     // document.querySelector('#stop').disabled = true
+      document.querySelector('#start').disabled = false
+      document.querySelector('#stop').disabled = true
     })
   }
   
@@ -86,8 +86,8 @@
     gattCharacteristic.startNotifications()
     .then(_ => {
       console.log('Start reading...')
-      //document.querySelector('#start').disabled = true
-     // document.querySelector('#stop').disabled = false
+      document.querySelector('#start').disabled = true
+      document.querySelector('#stop').disabled = false
     })
     .catch(error => {
       console.log('[ERROR] Start: ' + error)
@@ -98,8 +98,8 @@
     gattCharacteristic.stopNotifications()
     .then(_ => {
       console.log('Stop reading...')
-      //document.querySelector('#start').disabled = false
-      //document.querySelector('#stop').disabled = true
+      document.querySelector('#start').disabled = false
+      document.querySelector('#stop').disabled = true
     })
     .catch(error => {
       console.log('[ERROR] Stop: ' + error)
