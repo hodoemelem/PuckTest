@@ -1,10 +1,46 @@
-navigator.bluetooth.requestDevice({ filters: [{ services: ['6e400001-b5a3-f393-e0a9-e50e24dcca9e'] }] })
-.then(device => {
-  // Human-readable name of the device.
-  console.log(device.name);
+<form>
+  <button>Connect with BLE device</button>
+</form>
 
-  // Attempts to connect to remote GATT Server.
-  return device.gatt.connect();
-})
-.then(server => { /* … */ })
-.catch(error => { console.error(error); });
+<script>
+  var deviceName = 'Palm'
+
+  function isWebBluetoothEnabled() {
+    if (!navigator.bluetooth) {
+      console.log('Web Bluetooth API is not available in this browser!')
+      return false
+    }
+
+    return true
+  }
+
+  function getDeviceInfo() {
+    let options = {
+      // acceptAllDevices: true // Option to accept all devices
+      "filters": [
+        { services: ['6e400001-b5a3-f393-e0a9-e50e24dcca9e']  }
+      ]
+    }
+
+    console.log('Requesting Bluetooth Device...')
+    navigator.bluetooth.requestDevice(options).then(device => {
+      console.log('> Name: ' + device.name)
+    }).catch(error => {
+      console.log('Argh! ' + error)
+    })
+  }
+
+  document.querySelector('form').addEventListener('submit', function(event) {
+    event.stopPropagation()
+    event.preventDefault()
+
+    if (isWebBluetoothEnabled()) {
+      getDeviceInfo()
+    }
+  })
+</script>
+
+
+
+
+
