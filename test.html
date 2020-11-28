@@ -26,7 +26,7 @@ function connect() {
   }).then(function(characteristic) {
     var dataDiv = document.querySelector("#data");
     // When we get a notification, write the data to a div below the button
-    characteristic..addEventListener('characteristicvaluechanged',handleChangedValue);
+    characteristic.addEventListener('characteristicvaluechanged',handleChangedValue);
     // Now start getting notifications
     return characteristic.startNotifications();
   }).then(function() {
