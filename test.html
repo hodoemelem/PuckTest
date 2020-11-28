@@ -1,120 +1,12 @@
-
-<button id="read">Connect with BLE device</button>
-<button id="start" disabled>Start</button>
-<button id="stop" disabled>Stop</button>
-
-<script>
-  var bleService ='6e400001-b5a3-f393-e0a9-e50e24dcca9d'
-  var bleCharacteristic = '6e400002-b5a3-f393-e0a9-e50e24dcca9d'
-  var bluetoothDeviceDetected
-  var gattCharacteristic
-    document.querySelector('#read').addEventListener('click', function() {
-    if (isWebBluetoothEnabled()) { read() }
-  })
-
-  document.querySelector('#start').addEventListener('click', function(event) {
-    if (isWebBluetoothEnabled()) { start() }
-  })
-
-  document.querySelector('#stop').addEventListener('click', function(event) {
-    if (isWebBluetoothEnabled()) { stop() }
-  })
-  
-  function isWebBluetoothEnabled() {
-    if (!navigator.bluetooth) {
-      console.log('Web Bluetooth API is not available in this browser!')
-      return false
-    }
-
-    return true
-  }
-
-  function getDeviceInfo() {
-    let options = {
-      // acceptAllDevices: true // Option to accept all devices
-      "filters": [
-        { services: ['6e400001-b5a3-f393-e0a9-e50e24dcca9d']  }
-      ]
-    }
-
-    console.log('Requesting Bluetooth Device...')
-    navigator.bluetooth.requestDevice(options).then(device => {
-      //console.log('> Name: ' + device.name)
-      bluetoothDeviceDetected = device
-    }).catch(error => {
-      console.log('Argh! ' + error)
-    })
-  }
-
-  function read() {
-    return (bluetoothDeviceDetected ? Promise.resolve() : getDeviceInfo())
-    .then(connectGATT)
-    .then(_ => {
-      console.log('Reading Banglejs...')
-      return gattCharacteristic.readValue()
-    })
-    .catch(error => {
-      console.log('Waiting to start reading: ' + error)
-    })
-  }
-  
-    function connectGATT() {
-    if (bluetoothDeviceDetected.gatt.connected && gattCharacteristic) {
-      return Promise.resolve()
-    }
-
-    return bluetoothDeviceDetected.gatt.connect()
-    .then(server => {
-      console.log('Getting GATT Service...')
-      return server.getPrimaryService(bleService)
-    })
-    .then(service => {
-      console.log('Getting GATT Characteristic...')
-      return service.getCharacteristic(bleCharacteristic)
-    })
-    .then(characteristic => {
-      gattCharacteristic = characteristic
-      gattCharacteristic.addEventListener('characteristicvaluechanged',
-          handleChangedValue)
-      document.querySelector('#start').disabled = false
-      document.querySelector('#stop').disabled = true
-    })
-  }
-  
-  
-  function start() {
-    gattCharacteristic.startNotifications()
-    .then(_ => {
-      console.log('Start reading...')
-      document.querySelector('#start').disabled = true
-      document.querySelector('#stop').disabled = false
-    })
-    .catch(error => {
-      console.log('[ERROR] Start: ' + error)
-    })
-  }
-
-  function stop() {
-    gattCharacteristic.stopNotifications()
-    .then(_ => {
-      console.log('Stop reading...')
-      document.querySelector('#start').disabled = false
-      document.querySelector('#stop').disabled = true
-    })
-    .catch(error => {
-      console.log('[ERROR] Stop: ' + error)
-    })
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-</script>
+<html>
+ <head>
+ </head>
+ <body>
+  <script src="https://www.puck-js.com/puck.js"></script>
+  <button onclick="Puck.write('LED1.set();\n');">On!</button>
+  <button onclick="Puck.write('LED1.reset();\n');">Off!</button>
+ </body>
+</html>
 
 
 
