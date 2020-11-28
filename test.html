@@ -26,13 +26,7 @@ function connect() {
   }).then(function(characteristic) {
     var dataDiv = document.querySelector("#data");
     // When we get a notification, write the data to a div below the button
-    characteristic.addEventListener('characteristicvaluechanged', function(event) {
-      //var value = event.target.value.buffer; // an arraybuffer
-      //dataDiv.textContent = (new Int8Array(value)).toString();
-    var value = event.target.value.getUint8(0)
-    var now = new Date()
-    console.log('> ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + ' value:' + value)
-    });
+    characteristic..addEventListener('characteristicvaluechanged',handleChangedValue);
     // Now start getting notifications
     return characteristic.startNotifications();
   }).then(function() {
@@ -42,6 +36,15 @@ function connect() {
     console.log("Something went wrong. " + error);
   });
 }
+ 
+function handleChangedValue(event) {
+    let value = event.target.value.getUint8(0)
+    var now = new Date()
+    console.log('> ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + ' value:' + value)
+  }
+ 
+ 
+ 
 </script>
 </body>
 </html>
