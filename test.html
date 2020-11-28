@@ -38,9 +38,9 @@ function connect() {
 }
  
 function handleChangedValue(event) {
-    var Data = event.target.value//.getUint8(0)
+    var Data = String(event.target.value)//.getUint8(0)
     var now = new Date()
-    console.log('> ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + ' value:' + Data.toString())
+    console.log('> ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + ' value:' + Data)
   }
  
  
