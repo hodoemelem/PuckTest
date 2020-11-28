@@ -24,11 +24,7 @@ function connect() {
     return service.getCharacteristic("6e400003-b5a3-f393-e0a9-e50e24dcca9e");
   }).then(function(characteristic) {
     // Make a random color
-    var rgb = new Uint8Array([
-	    Math.random()*255,
-	    Math.random()*255,
-	    Math.random()*255]);
-	rgb = 255;
+    var rgb = 255;
     // Write it to the characteristic
     return characteristic.writeValue(rgb);
   }).then(function() {
