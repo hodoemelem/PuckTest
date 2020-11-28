@@ -1,43 +1,44 @@
-  <form>
-  <button>Connect with BLE device</button>
-</form>
-
+<html>
+<body>
+<button onclick="connect()">CONNECT to Web BLE</button>
 <script>
-  var deviceName = 'Bangle.js 4531'
-
-  function isWebBluetoothEnabled() {
-    if (!navigator.bluetooth) {
-      console.log('Web Bluetooth API is not available in this browser!')
-      return false
-    }
-
-    return true
-  }
-
-  function getDeviceInfo() {
-    let options = {
-      // acceptAllDevices: true // Option to accept all devices
-      "filters": [
-        { services: ['6e400001-b5a3-f393-e0a9-e50e24dcca9e'] }
-      ]
-    }
-
-    console.log('Requesting Bluetooth Device...')
-    navigator.bluetooth.requestDevice(options).then(device => {
-      console.log('> Name: ' + device.name)
-    }).catch(error => {
-      console.log('Argh! ' + error)
-    })
-  }
-
-  document.querySelector('form').addEventListener('submit', function(event) {
-    event.stopPropagation()
-    event.preventDefault()
-
-    if (isWebBluetoothEnabled()) {
-      getDeviceInfo()
-    }
-  })
+function connect() {
+  var options =  {
+    filters: [
+      {namePrefix: 'Bangle.js 4531'},
+    ],
+    optionalServices: [ "6e400001-b5a3-f393-e0a9-e50e24dcca9e" ]
+  };
+  var busy = false;
+  var gatt, service;
+  // Bring up the Web Bluetooth Device Chooser
+  navigator.bluetooth.requestDevice(options).then(function(device) {
+    console.log('Device: ' + JSON.stringify(device));
+    return device.gatt.connect();
+  }).then(function(g) {
+   gatt = g;
+   // Get our custom service
+   return gatt.getPrimaryService("6e400001-b5a3-f393-e0a9-e50e24dcca9e");
+  }).then(function(service) {
+    // Get the RGB LED characteristic
+    return service.getCharacteristic("6e400003-b5a3-f393-e0a9-e50e24dcca9e");
+  }).then(function(characteristic) {
+    // Make a random color
+    var rgb = new Uint8Array([
+	    Math.random()*255,
+	    Math.random()*255,
+	    Math.random()*255]);
+	rgb = 255;
+    // Write it to the characteristic
+    return characteristic.writeValue(rgb);
+  }).then(function() {
+    gatt.disconnect();
+    console.log("All Done!");
+  }).catch(function(error) {
+    console.log("Something went wrong. " + error);
+  });
+}
 </script>
-
+</body>
+</html>
 
