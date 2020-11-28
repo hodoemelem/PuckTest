@@ -1,6 +1,6 @@
 <button id="read">Connect with BLE device</button>
-<button id="start" disabled>Start</button>
-<button id="stop" disabled>Stop</button>
+<button id="start" >Start</button>
+<button id="stop" >Stop</button>
 
 <script>
   var bleService ='6e400001-b5a3-f393-e0a9-e50e24dcca9e'
@@ -73,11 +73,16 @@
     })
     .then(characteristic => {
       gattCharacteristic = characteristic
-      gattCharacteristic.addEventListener('characteristicvaluechanged',
-          handleChangedValue)
-      document.querySelector('#start').disabled = false
-      document.querySelector('#stop').disabled = true
+      gattCharacteristic.addEventListener('characteristicvaluechanged',handleChangedValue)
+      //document.querySelector('#start').disabled = false
+      //document.querySelector('#stop').disabled = true
     })
+  }
+  
+    function handleChangedValue(event) {
+    let value = event.target.value.getUint8(0)
+    var now = new Date()
+    console.log('> ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + ' value:' + value)
   }
   
   
@@ -85,8 +90,8 @@
     gattCharacteristic.startNotifications()
     .then(_ => {
       console.log('Start reading...')
-      document.querySelector('#start').disabled = true
-      document.querySelector('#stop').disabled = false
+     // document.querySelector('#start').disabled = true
+      //document.querySelector('#stop').disabled = false
     })
     .catch(error => {
       console.log('[ERROR] Start: ' + error)
@@ -97,8 +102,8 @@
     gattCharacteristic.stopNotifications()
     .then(_ => {
       console.log('Stop reading...')
-      document.querySelector('#start').disabled = false
-      document.querySelector('#stop').disabled = true
+      //document.querySelector('#start').disabled = false
+     // document.querySelector('#stop').disabled = true
     })
     .catch(error => {
       console.log('[ERROR] Stop: ' + error)
