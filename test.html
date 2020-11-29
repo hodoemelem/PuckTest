@@ -5,7 +5,7 @@
 <script>
  
 
-//let readBuffer = '';//temp buffer
+let readBuffer = '';//temp buffer
  
 function connect() {
   var options =  {
@@ -44,8 +44,16 @@ function connect() {
 function handleChangedValue(event) {
     ///var Data =event.target.value//.getUint8(0)
     let data = new TextDecoder().decode(event.target.value);
-    saveTextAsFile(data);
+    
     console.log(data)
+	
+	if(data === "StOpBaNgLeJsNoW"){
+		saveTextAsFile(readBuffer);
+  readBuffer = '';
+		
+	}
+	else{readBuffer += data;}
+	
  
   }
  
