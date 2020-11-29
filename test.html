@@ -49,8 +49,7 @@ function handleChangedValue(event) {
 	
 	if(data === "StOpBaNgLeJsNoW"){
 		saveTextAsFile(readBuffer);
-  readBuffer = '';
-		
+              readBuffer = '';	
 	}
 	else{readBuffer += data;}
 	
@@ -61,17 +60,11 @@ function saveTextAsFile(data)
 {
   let a = document.createElement('a');
 a.href = "data:application/octet-stream,"+encodeURIComponent(data);
-a.download = 'myData.txt';
+a.download = 'AccData.txt';
 a.click();
 }
  
-/*
-// Received data handling
-function receive(data) {
-    var now = new Date()
-    console.log('> ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + ' value:' + data)
-}
- */
+
  
 </script>
 </body>
