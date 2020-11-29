@@ -3,6 +3,10 @@
 <button onclick="connect()">Connect to Web Bluetooth</button>
 <div id="data"></div>
 <script>
+ 
+
+let readBuffer = '';//temp buffer
+ 
 function connect() {
   var options =  {
     filters: [
@@ -39,14 +43,33 @@ function connect() {
  
 function handleChangedValue(event) {
     ///var Data =event.target.value//.getUint8(0)
-    let Data = new TextDecoder().decode(event.target.value);
-    var now = new Date()
-    
-    console.log('> ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + ' value:' + Data)
+     let value = new TextDecoder().decode(event.target.value);
+
+  for (let c of value)
+  {
+    if (c === '\n') {
+      let data = readBuffer.trim();
+      readBuffer = '';
+
+      if (data) {
+        receive(data);
+      }
+    }
+    else {
+      readBuffer += c;
+        }
+   }
+  
  
   }
  
- 
+
+
+// Received data handling
+function receive(data) {
+    var now = new Date()
+    console.log('> ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + ' value:' + data)
+}
  
 </script>
 </body>
