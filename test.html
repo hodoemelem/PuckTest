@@ -48,12 +48,13 @@ function handleChangedValue(event) {
   for (let c of value)
   {
     if (c == '\n') {
-      let data = readBuffer.trim();
+     // let data = readBuffer.trim();
+     receive(readBuffer);
       readBuffer = '';
 
-      if (data) {
-        receive(data);
-      }
+     // if (data) {
+      //  receive(data);
+      //}
     }
     else {
       readBuffer += c;
