@@ -49,7 +49,9 @@ function handleChangedValue(event) {
   {
     if (c == 'N') {
      // let data = readBuffer.trim();
-     receive(readBuffer);
+     //receive(readBuffer);
+      var now = new Date()
+    console.log('> ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + ' value:' + readBuffer)
       readBuffer = '';
 
      // if (data) {
