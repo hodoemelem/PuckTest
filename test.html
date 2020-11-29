@@ -5,7 +5,7 @@
 <script>
  
 
-let readBuffer = '';//temp buffer
+//let readBuffer = '';//temp buffer
  
 function connect() {
   var options =  {
@@ -43,39 +43,19 @@ function connect() {
  
 function handleChangedValue(event) {
     ///var Data =event.target.value//.getUint8(0)
-     let value = new TextDecoder().decode(event.target.value);
-
-  for (let c of value)
-  {
-    if (String(c) === 'N') {
-     // let data = readBuffer.trim();
-     //receive(readBuffer);
-      var now = new Date()
-      console.log("Here")
-    console.log('> ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + ' value:' + readBuffer)
-      readBuffer = '';
-
-     // if (data) {
-      //  receive(data);
-      //}
-    }
-    else {
-     
-      readBuffer += c;
-      console.log(c)
-        }
-   }
-  
+    let data = new TextDecoder().decode(event.target.value);
+    console.log(data)
  
   }
  
 
-
+/*
 // Received data handling
 function receive(data) {
     var now = new Date()
     console.log('> ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + ' value:' + data)
 }
+ */
  
 </script>
 </body>
