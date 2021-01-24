@@ -43,8 +43,9 @@ function connect() {
  
 function handleChangedValue(event) {
     ///var Data =event.target.value//.getUint8(0)
-    let data = new TextDecoder('iso-8859-2').decode(event.target.value);
+    //let data = new TextDecoder('iso-8859-2').decode(event.target.value);
     //let data = new TextDecoder().decodeURIComponent(escape(event.target.value));
+    let data = new TextEncoder("windows-1252",{ NONSTANDARD_allowLegacyEncoding: true }).encode(event.target.value);
     console.log(data)
 	
 	if(data === "StOpBaNgLeJsNoW"){
@@ -60,7 +61,7 @@ function saveTextAsFile(data)
 {
   let a = document.createElement('a');
 //a.href = "data:application/octet-stream,"+encodeURIComponent(data);
-a.href = "data:application/octet-stream,"+ decodeURIComponent(escape(data));
+a.href = "data:application/octet-stream,"+ data;
 a.download = 'AccData.txt';
 a.click();
 }
