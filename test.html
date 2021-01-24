@@ -1,6 +1,6 @@
  <html>
 <body>
-<button onclick="connect()">Connect to Web Bluetooth8</button>
+<button onclick="connect()">Connect to Web Bluetooth9</button>
 <div id="data"></div>
 <script>
  
@@ -43,26 +43,27 @@ function connect() {
  
 function handleChangedValue(event) {
     ///var Data =event.target.value//.getUint8(0)
-    //let data = new TextDecoder('windows-1252').decode(event.target.value);
+    let data = new TextDecoder('windows-1252').decode(event.target.value);
     //let data = new TextDecoder().decodeURIComponent(escape(event.target.value));
    
-     var encodedata = new TextEncoder("windows-1252",{ NONSTANDARD_allowLegacyEncoding: true }).encode(event.target.value);
-    console.log(encodedata)
+    // var encodedata = new TextEncoder("windows-1252",{ NONSTANDARD_allowLegacyEncoding: true }).encode(event.target.value);
+    console.log(data)
 	
-	if(encodedata === "StOpBaNgLeJsNoW"){
+	if(data === "StOpBaNgLeJsNoW"){
 		saveTextAsFile(readBuffer);
               readBuffer = '';	
 	}
-	else{readBuffer += encodedata;}
+	else{readBuffer += data;}
 	
  
   }
  
 function saveTextAsFile(data)
 {
+	var encodedata = new TextEncoder("windows-1252",{ NONSTANDARD_allowLegacyEncoding: true }).encode(data);
   let a = document.createElement('a');
 //a.href = "data:application/octet-stream,"+encodeURIComponent(data);
-a.href = "data:application/octet-stream,"+ data;
+a.href = "data:application/octet-stream,"+ encodedata;
 a.download = 'AccData.txt';
 a.click();
 }
