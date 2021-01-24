@@ -42,7 +42,7 @@ function connect() {
 }
  
 function handleChangedValue(event) {
-    var Data =event.target.value.getUint8(0);
+    var Data =event.target.value;
     //let data = new TextDecoder("iso-8859-1").decode(event.target.value);
    
    
@@ -55,7 +55,7 @@ function handleChangedValue(event) {
 		saveTextAsFile(readBuffer);
               readBuffer = '';	
 	}
-	else{readBuffer += Data;}
+	else{readBuffer += Data.getUint8(0);}
 	
  
   }
