@@ -1,6 +1,6 @@
  <html>
 <body>
-<button onclick="connect()">Connect to Web Bluetooth1</button>
+<button onclick="connect()">Connect to Web Bluetooth2</button>
 <div id="data"></div>
 <script>
  
@@ -88,7 +88,8 @@ function handleChangedValue(event) {
 function saveTextAsFile(data)
 {
 	//var encodedata = new TextEncoder( "iso-8859-2",{ NONSTANDARD_allowLegacyEncoding: true }).encode(data);
-	data = new TextDecoder( "windows-1252").decode(data.buffer);
+	data = new Uint8Array(data.buffer)
+	data = new TextDecoder( "windows-1252").decode(data);
   let a = document.createElement('a');
 //a.href = "data:application/octet-stream,"+encodeURIComponent(data);
 a.href = "data:application/octet-stream,"+ data;
