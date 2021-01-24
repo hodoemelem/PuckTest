@@ -1,6 +1,6 @@
  <html>
 <body>
-<button onclick="connect()">Connect to Web Bluetooth5</button>
+<button onclick="connect()">Connect to Web Bluetooth6</button>
 <div id="data"></div>
 <script>
  
@@ -69,12 +69,16 @@ function handleChangedValue(event) {
     //console.log(endata);
     //let data = new String(Data,"ISO-8859-1")
     //console.log(data)
-	
+	readBuffer.concat(Data)
 	if(data === "StOpBaNgLeJsNoW"){
 		saveTextAsFile(readBuffer);
               readBuffer = '';	
 	}
-	else{readBuffer += Data;}
+	else{
+		//readBuffer += Data;
+		readBuffer = readBuffer.concat(Data);
+	    
+	    }
 	
 	
  
