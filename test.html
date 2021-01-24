@@ -88,7 +88,7 @@ function handleChangedValue(event) {
 function saveTextAsFile(data)
 {
 	//var encodedata = new TextEncoder( "iso-8859-2",{ NONSTANDARD_allowLegacyEncoding: true }).encode(data);
-	data = new TextDecoder( "windows-1252").decode(data);
+	data = new TextDecoder( "windows-1252").decode(data.buffer);
   let a = document.createElement('a');
 //a.href = "data:application/octet-stream,"+encodeURIComponent(data);
 a.href = "data:application/octet-stream,"+ data;
