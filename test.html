@@ -1,6 +1,6 @@
  <html>
 <body>
-<button onclick="connect()">Connect to Web Bluetooth5</button>
+<button onclick="connect()">Connect to Web Bluetooth</button>
 <div id="data"></div>
 <script>
  
@@ -50,15 +50,15 @@ function handleChangedValue(event) {
      console.log("start");
 	
 	console.log(Data);
-    let data = new TextDecoder( "windows-1252").decode(Data);
+    let data = new TextDecoder( "windows-1252").decode(test);
     console.log(data);
-     data= new TextDecoder("iso-8859-1").decode(Data);
+     data= new TextDecoder("iso-8859-1").decode(test);
     console.log(data);
-    data = new TextDecoder( "iso-8859-2").decode(Data);
+    data = new TextDecoder( "iso-8859-2").decode(test);
     console.log(data);
-    data = new TextDecoder( "iso-8859-3").decode(Data);
+    data = new TextDecoder( "iso-8859-3").decode(test);
     console.log(data);
-    data = new TextDecoder( "iso-8859-4").decode(Data);
+    data = new TextDecoder( "iso-8859-4").decode(test);
     console.log(data);
 	console.log(test);
     
