@@ -1,11 +1,11 @@
  <html>
 <body>
-<button onclick="connect()">Connect to Web Bluetooth6</button>
+<button onclick="connect()">Connect to Web Bluetooth</button>
 <div id="data"></div>
 <script>
  
 
-let readBuffer = '';//temp buffer
+var readBuffer = [];//temp buffer
  
 function connect() {
   var options =  {
@@ -72,11 +72,12 @@ function handleChangedValue(event) {
 	readBuffer.concat(Data)
 	if(data === "StOpBaNgLeJsNoW"){
 		saveTextAsFile(readBuffer);
-              readBuffer = '';	
+              readBuffer = [];	
 	}
 	else{
 		//readBuffer += Data;
-		readBuffer = readBuffer.concat(Data);
+		//readBuffer = readBuffer.concat(Data);
+		readBuffer = [].concat(readBuffer, Data);
 	    
 	    }
 	
