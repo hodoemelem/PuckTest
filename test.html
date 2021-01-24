@@ -1,6 +1,6 @@
  <html>
 <body>
-<button onclick="connect()">Connect to Web Bluetooth</button>
+<button onclick="connect()">Connect to Web Bluetooth1</button>
 <div id="data"></div>
 <script>
  
@@ -45,13 +45,14 @@ function handleChangedValue(event) {
 	
 	
     var Data =event.target.value;
-    var test = new Uint8Array(Data.buffer);
+    Data = new Uint8Array(Data.buffer);
 	
-     console.log("start");
+     //console.log("start");
 	
-	console.log(Data);
-    let data = new TextDecoder( "windows-1252").decode(test);
+	//console.log(Data);
+    let data = new TextDecoder( "windows-1252").decode(Data);
     console.log(data);
+	/*
      data= new TextDecoder("iso-8859-1").decode(test);
     console.log(data);
     data = new TextDecoder( "iso-8859-2").decode(test);
@@ -61,19 +62,19 @@ function handleChangedValue(event) {
     data = new TextDecoder( "iso-8859-4").decode(test);
     console.log(data);
 	console.log(test);
-    
+    */
 	
     //var encodedata = new TextEncoder("windows-1252",{ NONSTANDARD_allowLegacyEncoding: true }).encode(event.target.value);
     
     //let data = new String(Data,"ISO-8859-1")
     //console.log(data)
-	/*
+	
 	if(data === "StOpBaNgLeJsNoW"){
 		saveTextAsFile(readBuffer);
               readBuffer = '';	
 	}
 	else{readBuffer += data;}
-	*/
+	
 	
  
   }
