@@ -43,8 +43,8 @@ function connect() {
  
 function handleChangedValue(event) {
     ///var Data =event.target.value//.getUint8(0)
-    let data = new TextDecoder().decode(event.target.value);
-    
+    let data = new TextDecoder('windows-1252').decode(event.target.value);
+    //let data = new TextDecoder().decodeURIComponent(escape(event.target.value));
     console.log(data)
 	
 	if(data === "StOpBaNgLeJsNoW"){
