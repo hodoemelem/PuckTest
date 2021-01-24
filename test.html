@@ -1,6 +1,6 @@
  <html>
 <body>
-<button onclick="connect()">Connect to Web Bluetooth</button>
+<button onclick="connect()">Connect to Web Bluetooth1</button>
 <div id="data"></div>
 <script>
  
@@ -10,7 +10,7 @@ var readBuffer = [];//temp buffer
 function connect() {
   var options =  {
     filters: [
-      {namePrefix: 'Bangle.js 4531'},
+      {namePrefix: 'Bangle.js e80c'},
     ],
     optionalServices: [ "4faf0001-1fb5-459e-8fcc-c5c9c331914b" ]
   };
