@@ -60,7 +60,7 @@ function saveTextAsFile(data)
 {
   let a = document.createElement('a');
 //a.href = "data:application/octet-stream,"+encodeURIComponent(data);
-a.href = data;// "data:application/octet-stream,"+ data;
+a.href = "data:application/octet-stream,"+ decodeURIComponent(escape(data));
 a.download = 'AccData.txt';
 a.click();
 }
