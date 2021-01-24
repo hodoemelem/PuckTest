@@ -1,6 +1,6 @@
  <html>
 <body>
-<button onclick="connect()">Connect to Web Bluetooth2</button>
+<button onclick="connect()">Connect to Web Bluetooth</button>
 <div id="data"></div>
 <script>
  
@@ -47,39 +47,14 @@ function handleChangedValue(event) {
     var Data =event.target.value;
     Data = new Uint8Array(Data.buffer);
 	
-    console.log("start");
-	
     console.log(Data);
     let data = new TextDecoder( "windows-1252").decode(Data);
-  
-	/*
-     data= new TextDecoder("iso-8859-1").decode(test);
-    console.log(data);
-    data = new TextDecoder( "iso-8859-2").decode(test);
-    console.log(data);
-    data = new TextDecoder( "iso-8859-3").decode(test);
-    console.log(data);
-    data = new TextDecoder( "iso-8859-4").decode(test);
-    console.log(data);
-	console.log(test);
-    */
 	
-    //var endata = new TextEncoder("windows-1252",{ NONSTANDARD_allowLegacyEncoding: true }).encode(Data);
-    //console.log("encoded");
-    //console.log(endata);
-    //let data = new String(Data,"ISO-8859-1")
-    //console.log(data)
-	readBuffer.concat(Data)
-	if(data === "StOpBaNgLeJsNoW"){
+    if(data === "StOpBaNgLeJsNoW"){
 		saveTextAsFile(readBuffer);
-              readBuffer = [];	
-	}
-	else{
-		//readBuffer += Data;
-		//readBuffer = readBuffer.concat(Data);
-		readBuffer = [].concat(readBuffer, Data);
-	    
-	    }
+                readBuffer = [];	
+     }
+     else{	readBuffer = [].concat(readBuffer, Data);}
 	
 	
  
@@ -87,14 +62,11 @@ function handleChangedValue(event) {
  
 function saveTextAsFile(data)
 {
-	//var encodedata = new TextEncoder( "iso-8859-2",{ NONSTANDARD_allowLegacyEncoding: true }).encode(data);
-	data = new Uint8Array(data.buffer)
-	data = new TextDecoder( "windows-1252").decode(data);
-  let a = document.createElement('a');
-//a.href = "data:application/octet-stream,"+encodeURIComponent(data);
-a.href = "data:application/octet-stream,"+ data;
-a.download = 'AccData.txt';
-a.click();
+	
+        let a = document.createElement('a');
+	a.href = "data:application/octet-stream,"+ data;
+	a.download = 'AccData.txt';
+	a.click();
 }
  
 
