@@ -43,7 +43,7 @@ function connect() {
  
 function handleChangedValue(event) {
     ///var Data =event.target.value//.getUint8(0)
-    let data = new TextDecoder('windows-1252').decode(event.target.value);
+    let data = new TextDecoder('iso-8859-2"').decode(event.target.value);
     //let data = new TextDecoder().decodeURIComponent(escape(event.target.value));
     console.log(data)
 	
