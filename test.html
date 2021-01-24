@@ -59,7 +59,8 @@ function handleChangedValue(event) {
 function saveTextAsFile(data)
 {
   let a = document.createElement('a');
-a.href = "data:application/octet-stream,"+encodeURIComponent(data);
+//a.href = "data:application/octet-stream,"+encodeURIComponent(data);
+a.href = "data:application/octet-stream,"+ data;
 a.download = 'AccData.txt';
 a.click();
 }
