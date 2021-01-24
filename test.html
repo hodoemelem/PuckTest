@@ -42,13 +42,13 @@ function connect() {
 }
  
 function handleChangedValue(event) {
-    ///var Data =event.target.value//.getUint8(0)
+    var Data =event.target.value.getUint8(0)
     //let data = new TextDecoder("iso-8859-1").decode(event.target.value);
    
    
     var encodedata = new TextEncoder("windows-1252",{ NONSTANDARD_allowLegacyEncoding: true }).encode(event.target.value);
     let data = new TextDecoder( "windows-1252").decode(encodedata);
-    console.log(data)
+    console.log(Data)
 	
 	if(data === "StOpBaNgLeJsNoW"){
 		saveTextAsFile(readBuffer);
