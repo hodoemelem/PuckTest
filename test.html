@@ -1,6 +1,6 @@
  <html>
 <body>
-<button onclick="connect()">Connect to Web Bluetooth1</button>
+<button onclick="connect()">Connect to Web Bluetooth2</button>
 <div id="data"></div>
 <script>
  
@@ -60,7 +60,7 @@ function saveTextAsFile(data)
 {
   let a = document.createElement('a');
 //a.href = "data:application/octet-stream,"+encodeURIComponent(data);
-a.href = "data:application/octet-stream,"+ data;
+a.href = data;// "data:application/octet-stream,"+ data;
 a.download = 'AccData.txt';
 a.click();
 }
