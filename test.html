@@ -1,6 +1,6 @@
  <html>
 <body>
-<button onclick="connect()">Connect to Web Bluetooth9</button>
+<button onclick="connect()">Connect to Web Bluetooth10</button>
 <div id="data"></div>
 <script>
  
@@ -43,7 +43,7 @@ function connect() {
  
 function handleChangedValue(event) {
     ///var Data =event.target.value//.getUint8(0)
-    let data = new TextDecoder('windows-1252').decode(event.target.value);
+    let data = new TextDecoder( "iso-8859-1").decode(event.target.value);
     //let data = new TextDecoder().decodeURIComponent(escape(event.target.value));
    
     // var encodedata = new TextEncoder("windows-1252",{ NONSTANDARD_allowLegacyEncoding: true }).encode(event.target.value);
@@ -60,7 +60,7 @@ function handleChangedValue(event) {
  
 function saveTextAsFile(data)
 {
-	var encodedata = new TextEncoder("windows-1252",{ NONSTANDARD_allowLegacyEncoding: true }).encode(data);
+	var encodedata = new TextEncoder( "iso-8859-1",{ NONSTANDARD_allowLegacyEncoding: true }).encode(data);
   let a = document.createElement('a');
 //a.href = "data:application/octet-stream,"+encodeURIComponent(data);
 a.href = "data:application/octet-stream,"+ encodedata;
