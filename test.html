@@ -1,6 +1,6 @@
  <html>
 <body>
-<button onclick="connect()">Connect to Web Bluetooth1</button>
+<button onclick="connect()">Connect to Web Bluetooth</button>
 <div id="data"></div>
 <script>
  
@@ -22,9 +22,11 @@ function connect() {
   }).then(function(g) {
    gatt = g;
    // Get our custom service
+	 
    return gatt.getPrimaryService("4faf0001-1fb5-459e-8fcc-c5c9c331914b");
   }).then(function(s) {
     service = s;
+    console.log("Service found!");
     // Get the Acceleorometer characteristic
     return service.getCharacteristic("4faf0002-1fb5-459e-8fcc-c5c9c331914b");
   }).then(function(characteristic) {
@@ -32,6 +34,7 @@ function connect() {
     // When we get a notification, write the data to a div below the button
     characteristic.addEventListener('characteristicvaluechanged',handleChangedValue);
     // Now start getting notifications
+    console.log("characteristic found!");
     return characteristic.startNotifications();
   }).then(function() {
     //gatt.disconnect();
@@ -43,7 +46,7 @@ function connect() {
  
 function handleChangedValue(event) {
 	
-	
+    console.log("Rx data:");
     var Data =event.target.value;
     Data = new Uint8Array(Data.buffer);
 	
